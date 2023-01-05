@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "452e92dfd921e7d11e44e4718d01f8ae",
+    "packages": [
+        {
+            "name": "liberty/file-system",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zorinalexey/liberty-file-system.git",
+                "reference": "ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zorinalexey/liberty-file-system/zipball/ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f",
+                "reference": "ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Liberty\\FileSystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Алексей Зорин",
+                    "email": "zorinalexey59292@gmail.com"
+                }
+            ],
+            "description": "Библиотека классов для работы с файловой системой",
+            "support": {
+                "issues": "https://github.com/zorinalexey/liberty-file-system/issues",
+                "source": "https://github.com/zorinalexey/liberty-file-system/tree/1.0.6"
+            },
+            "time": "2023-01-05T14:01:24+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
