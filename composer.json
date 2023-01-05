@@ -1,6 +1,6 @@
 {
     "name": "liberty/cache",
-    "description": "test",
+    "description": "Библиотека для кеширования данных в файлах",
     "type": "library",
     "license": "MIT",
     "autoload": {
