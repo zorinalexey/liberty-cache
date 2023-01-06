@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Liberty\Cache;
 
+use Liberty\Cache\Cache;
 use Liberty\FileSystem\Dir;
 
 /**
@@ -30,7 +31,7 @@ final class Settings
     public int $timeout = 15;
 
     /**
-     * true - кеширование файлов включено или falsae - выключено
+     * true - кеширование файлов включено, false - выключено
      * @var bool
      */
     public bool $cache = true;
@@ -56,7 +57,9 @@ final class Settings
      */
     public function getPath(): string|false
     {
-        return Dir::set($this->path)->create()->realPath;
+        $dir = Dir::set($this->path);
+        $dir->recursive = true;
+        return $dir->create()->realPath;
     }
 
     /**
@@ -64,15 +67,13 @@ final class Settings
      * @param string|null $class Наименование родительского класса запроса инстанса
      * @return self
      */
-    public static function instance(?string $class = null): self
+    public static function instance(string $cacheClassName = Cache::class): self
     {
-        if ( ! $class) {
-            $class = get_called_class();
+        $instanceName = md5($cacheClassName);
+        if ( ! isset(self::$instance[$instanceName])) {
+            self::$instance[$instanceName] = new self();
         }
-        if ( ! isset(self::$instance[$class])) {
-            self::$instance[$class] = new self();
-        }
-        return self::$instance[$class];
+        return self::$instance[$instanceName];
     }
 
 }

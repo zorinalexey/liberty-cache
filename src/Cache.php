@@ -31,8 +31,9 @@ final class Cache
      * @var mixed
      */
     public mixed $cacheData = null;
+    private static array $instance = [];
 
-    public function __construct(Settings $settings)
+    private function __construct(Settings $settings)
     {
         $this->settings = $settings;
     }
@@ -53,25 +54,14 @@ final class Cache
      */
     public function save(): mixed
     {
-        if ($this->cacheData && ! $this->chek($this->cacheFile)) {
-            $file = File::set($this->getFileName($this->cacheFile));
-            $file->content = serialize($this->cacheData);
-            $file->create();
-        }
-        return $this->get();
-    }
-
-    /**
-     * Проверка необходимости перезаписи файла
-     * @param string $file
-     * @return bool true если файл срок кеша файла не вышел, false в противном случае
-     */
-    private function chek(string $file): bool
-    {
-        $time = time() - $this->settings->getTimeout();
-        $fileTime = $this->getTimeCacheFile($this->getFileName($file));
-        if ($fileTime >= $time) {
-            return true;
+        if ($this->settings->cache) {
+            if ($this->cacheFile && $this->cacheData) {
+                $file = File::set($this->getFileName($this->cacheFile));
+                $file->content = serialize($this->cacheData);
+                if ($file->rewrite()) {
+                    return $this->cacheData;
+                }
+            }
         }
         return false;
     }
@@ -97,28 +87,27 @@ final class Cache
      */
     public function get(): mixed
     {
-        $file = File::set($this->getFileName($this->cacheFile));
-        if ($file->has() AND $this->chek($this->cacheFile)) {
-            $this->cacheData = $file->info()->content;
+        if ($this->settings->cache) {
+            $cacheFile = $this->getFileName($this->cacheFile);
+            $time = $this->getTimeCacheFile($cacheFile);
+            $cacheTime = time() - $this->settings->getTimeout();
+            var_dump($time, $cacheTime);
+            if ($this->cacheFile && $time >= $cacheTime) {
+                $file = File::set($cacheFile)->info();
+                return unserialize($file->content);
+            }
         }
-        return unserialize($this->cacheData);
+        return false;
     }
 
-    /**
-     * Обновить или создать кеш
-     * @param string $cacheFile Файл кеша
-     * @param mixed $cacheData Данные файла кеша
-     * @return mixed Данные файла кеша
-     */
-    public function createOrUpdate(string $cacheFile, mixed $cacheData): mixed
+    public static function instance(string $cacheClassName = self::class): self
     {
-        $this->cacheFile = $cacheFile;
-        $this->cacheData = $cacheData;
-        $getCache = $this->get();
-        if ( ! $getCache) {
-            return $this->save();
+        $instanceName = md5($cacheClassName);
+        if ( ! isset(self::$instance[$instanceName])) {
+            $settings = Settings::instance($cacheClassName);
+            self::$instance[$instanceName] = new self($settings);
         }
-        return $getCache;
+        return self::$instance[$instanceName];
     }
 
 }

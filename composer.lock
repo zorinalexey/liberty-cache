@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "452e92dfd921e7d11e44e4718d01f8ae",
+    "content-hash": "a3d0b320fa3c4ef370fad206eeea7bf9",
     "packages": [
         {
             "name": "liberty/file-system",
-            "version": "1.0.6",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zorinalexey/liberty-file-system.git",
-                "reference": "ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f"
+                "reference": "9d15e2da23361f6f0e7168469358d3d064cf16ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zorinalexey/liberty-file-system/zipball/ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f",
-                "reference": "ace7fea1eccd3cc27ab4bec5a9e687c7f0d3b77f",
+                "url": "https://api.github.com/repos/zorinalexey/liberty-file-system/zipball/9d15e2da23361f6f0e7168469358d3d064cf16ce",
+                "reference": "9d15e2da23361f6f0e7168469358d3d064cf16ce",
                 "shasum": ""
             },
             "require": {
@@ -25,6 +25,9 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/defines.php"
+                ],
                 "psr-4": {
                     "Liberty\\FileSystem\\": "src/"
                 }
@@ -42,9 +45,49 @@
             "description": "Библиотека классов для работы с файловой системой",
             "support": {
                 "issues": "https://github.com/zorinalexey/liberty-file-system/issues",
-                "source": "https://github.com/zorinalexey/liberty-file-system/tree/1.0.6"
+                "source": "https://github.com/zorinalexey/liberty-file-system/tree/1.0.8"
             },
-            "time": "2023-01-05T14:01:24+00:00"
+            "time": "2023-01-06T05:45:45+00:00"
+        },
+        {
+            "name": "liberty/helpers",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zorinalexey/liberty-helpers.git",
+                "reference": "56fee7374b114c7e6089473396ef22be8e39c110"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zorinalexey/liberty-helpers/zipball/56fee7374b114c7e6089473396ef22be8e39c110",
+                "reference": "56fee7374b114c7e6089473396ef22be8e39c110",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Liberty\\Helpers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Алексей Зорин",
+                    "email": "zorinalexey59292@gmail.com"
+                }
+            ],
+            "description": "test",
+            "support": {
+                "issues": "https://github.com/zorinalexey/liberty-helpers/issues",
+                "source": "https://github.com/zorinalexey/liberty-helpers/tree/1.0.3"
+            },
+            "time": "2023-01-06T05:44:27+00:00"
         }
     ],
     "packages-dev": [],
