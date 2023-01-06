@@ -91,7 +91,6 @@ final class Cache
             $cacheFile = $this->getFileName($this->cacheFile);
             $time = $this->getTimeCacheFile($cacheFile);
             $cacheTime = time() - $this->settings->getTimeout();
-            var_dump($time, $cacheTime);
             if ($this->cacheFile && $time >= $cacheTime) {
                 $file = File::set($cacheFile)->info();
                 return unserialize($file->content);
